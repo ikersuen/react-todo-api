@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import Todos from '../containers/TodosContainer'
 //import Todos from './Todos.js' 
 import TodoInputContainer from '../containers/TodoInputContainer';
+import TodoInputResource from '../api'
 
 export default class TodoList extends Component {
   componentDidMount() {
-    fetch("http://localhost:8080/api/todos", {mode: 'cors'})
+    TodoInputResource.getAll()
       .then(res => res.json())
       .then(res => {
         this.props.dispatch({
