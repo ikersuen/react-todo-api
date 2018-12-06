@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TodoInput from '../components/TodoInput.js'
+import TodoInputResource from '../api'
 
 const mapDispatchToProps = (dispatch) => ({
   addNewTodo: newTodo => {
@@ -8,12 +9,7 @@ const mapDispatchToProps = (dispatch) => ({
       content: newTodo,
       status: "active"
     }
-    fetch("http://localhost:8080/api/todos", {
-      mode: 'cors',
-      method: 'POST',
-      headers: new Headers({'Content-Type': 'application/json'}),
-      body: JSON.stringify(newTodoItem)
-    })
+    TodoInputResource.createTodo(newTodoItem)
     .then(res => res.json())
     .then(({id, status, content}) => {
       dispatch({
