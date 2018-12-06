@@ -22,5 +22,32 @@ const mapDispatchToProps = (dispatch) => ({
       })
     })
   }
+  // showActiveStatus() {
+  //   fetch("http://localhost:8080/api/todos/search/statusOfTodos?status=active", {
+  //   mode: 'cors',
+  //   })
+  //  .then(res=>res.json())
+  //  .then(res => {
+  //     dispatch({
+  //     type: "UPDATE_CHECKBOX",
+  //     payload: res._embedded.todos
+  //   })
+  // })
+  // },
+  // showAllStatus() {
+  //   fetch("http://localhost:8080/api/todos", {mode: 'cors'})
+  //     .then(res => res.json())
+  //     .then(res => {
+  //         dispatch({
+  //         type: "UPDATE_TODOS",
+  //         payload: res._embedded.todos
+  //       })
+  //     })
+  // }
 })
-export default connect(null, mapDispatchToProps)(TodoInput)
+
+const mapStateToProps = state => ({
+  isOnlyActive: state.isOnlyActive
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoInput)
