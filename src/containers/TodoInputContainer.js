@@ -21,6 +21,12 @@ const mapDispatchToProps = (dispatch) => ({
         payload: {id, status, content}
       })
     })
+  },
+  updateFilter: status => {
+    dispatch({
+      type: "SET_FILTER",
+      payload: !status
+    })
   }
   // showActiveStatus() {
   //   fetch("http://localhost:8080/api/todos/search/statusOfTodos?status=active", {

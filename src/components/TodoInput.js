@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
-class TodoInput extends Component {
+export default class TodoInput extends Component {
   onAdded = () => {
     const {input} = this.refs
     this.props.addNewTodo(input.value)
@@ -19,10 +18,7 @@ class TodoInput extends Component {
   // }
 
   onUpdateFilter = (event) => {
-    this.props.dispatch({
-      type: "SET_FILTER",
-      payload: !this.props.isOnlyActive
-    })
+    this.props.updateFilter(this.props.isOnlyActive)
   }
   
   render() {
@@ -36,9 +32,3 @@ class TodoInput extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  isOnlyActive: state.isOnlyActive
-})
-
-export default connect(mapStateToProps)(TodoInput)
